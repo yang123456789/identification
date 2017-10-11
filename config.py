@@ -8,8 +8,10 @@ identify = {
 # mysql
 mysql = {
     'user': 'root',
-    'password': 'SYHXsqq@1233',
-    'host': '123.58.244.172',
+    # 'password': 'SYHXsqq@1233',
+    'password': '123456789',
+    # 'host': '123.58.244.172',
+    'host': 'localhost',
     'port': 3306,
     'db': 'identify'
 }

@@ -1,6 +1,6 @@
 from flask import Flask, url_for, render_template, request, make_response, redirect
 import json
-app = Flask(__name__)
+from portal import app
 app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans'
 
 

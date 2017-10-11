@@ -1,9 +1,14 @@
 import re
 from db.models import Customer, session
 from views import *
-from flask.ext.babel import gettext as _
+from flask_babel import gettext as _
 from datetime import datetime, timedelta
 from security import decrypt_password, encrypt_password
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/register', methods=['POST'])
