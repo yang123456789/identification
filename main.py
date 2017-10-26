@@ -1,6 +1,6 @@
 import logging
 from portal import app
-# from login import index
+# from portal import app
 # from flask import Flask
 # app = Flask(__name__)
 

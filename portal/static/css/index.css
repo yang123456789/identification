@@ -2,3 +2,72 @@
     padding: 0;
     margin: 0;
 }
+
+body {
+    background-color: #ededed;
+}
+
+ul li {
+    list-style: none;
+}
+
+.header {
+    background-color: #2262a7;
+    padding-top: 8%;
+    padding-bottom: 1%;
+}
+
+.header p {
+    color: #dfdfdf;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+}
+
+.content {
+    width: 100%;
+}
+
+.content .banner {
+    margin: 30px auto;
+    width: 500px;
+    padding: 15px 25px;
+    background-color: #f7f7f7;
+}
+
+.content .banner .head .nav li {
+    width: 50%;
+    text-align: center;
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    color: #868686;
+    border-bottom: 1px solid #ededed;
+    float: left;
+}
+
+.content .banner .head .nav li:hover {
+    cursor: pointer;
+}
+
+.content .banner .head .nav .skit {
+    color: #7580aa;
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #7580aa;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:after, .clearfix:before {
+    display: block;
+    height: 0;
+    visibility: hidden;
+    content: "\200B";
+}
+
+.clearfix:after {
+    clear: both;
+}

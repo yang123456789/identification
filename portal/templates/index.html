@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    {% include 'common.html' %}
+    <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
+<div class="header">
+    <p>信息查询系统</p>
+</div>
 <div class="content">
-    <div class="header">
-        <ul class="nav">
-            <li class="skit">登录</li>
-            <li>注册</li>
-        </ul>
+    <div class="banner">
+        <div class="head">
+            <ul class="nav clearfix">
+                <li class="skit">登录</li>
+                <li>注册</li>
+            </ul>
+        </div>
+        <div id="subject">
+            {% include 'login.html' %}
+        </div>
     </div>
 </div>
 </body>
 </html>
+<script type="text/javascript" src="/static/js/index.js"></script>
