@@ -3,15 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        .container {
+            width: 450px;
+        }
+        .container .top {
+            width: 100%;
+            font-size: 26px;
+            color: #b5b5b5;
+            margin: 10px 0;
+        }
+        .container .bottom .group {
+            position: relative;
+        }
+        .container .bottom .group input {
+            outline: none;
+            padding-left: 34px;;
+        }
+        .container .bottom .group .fa {
+            position: absolute;
+            width: 34px;
+            text-align: center;
+            height: 34px;
+            line-height: 34px;
+            top: 0;
+            left: 0;
+            color: #b5b5b5;
+        }
+        .container .footer {
+            text-align: right;
+        }
+        .container .footer .login {
+            padding: 10px 36px;
+            background-color: #3f9ee3;
+            color: #f7f7f7;
+            border-radius: 4px;
+            margin-right: -15px;
+        }
+        .container .footer .login:hover {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <div class="top">用户登录</div>
     <div class="bottom form-horizontal">
-        <div class="form-group">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="用户名或电子邮件">
-            <i class="glyphicon glyphicon-user"></i>
+        <div class="form-group group">
+            <input type="text" class="form-control" id="inputEmail" placeholder="用户名或电子邮件">
+            <div class="fa">
+                <i class="glyphicon glyphicon-user"></i>
+            </div>
         </div>
+        <div class="form-group group">
+            <input type="password" class="form-control" id="password" placeholder="密码">
+            <div class="fa">
+                <i class="glyphicon glyphicon-lock"></i>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <span class="login" id="login">登录</span>
     </div>
 </div>
 </body>
