@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 def decrypt_password(secret_key):
-    private_key = KEY['private_key']
+    private_key = KEY['private']
     rsa_key = RSA.importKey(private_key)
     cipher = Cipher_pkcs1_v1_5.new(rsa_key)
     password = cipher.decrypt(base64.b64decode(secret_key), '')

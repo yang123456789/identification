@@ -1,6 +1,7 @@
 import re
 from db.models import Customer, session
 from views import *
+app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans'
 from flask_babel import gettext as _
 from datetime import datetime, timedelta
 from security import decrypt_password, encrypt_password
@@ -20,7 +21,7 @@ def register():
     result = validate(username, decipher_password, email)
     if result is True:
         encipher_password = encrypt_password(username, decipher_password)
-        status = save(username, encipher_password, email)
+        status = _save(username, encipher_password, email)
         if status:
             return render_200(_('register successfully'))
         return render_200(_('register failed'))
@@ -31,7 +32,7 @@ def validate(username, password, email):
     if username and password and email:
         if not re.match(r'^[a-zA-Z][a-zA-Z0-9]{3,19}$', username):
             return render_400(_('The username must be startswith latter 4-20 bit'))
-        elif not re.match(r'^\w{8,20}$', password):
+        elif not re.match(r'^{8,20}$', password):
             return render_400(_('The password must be 8-20 character'))
         elif not re.match(r'^[a-zA-Z0-9]+([._\\-\\+]*[a-zA-Z0-9])*@([a-zA-Z0-9]+'
                           r'[-a-zA-Z0-9]*[a-zA-Z0-9]+.){1,63}[a-zA-Z0-9]+$', email):
@@ -40,8 +41,9 @@ def validate(username, password, email):
     return render_404(_('The username or password or email does not None'))
 
 
-def save(username, password, email):
+def _save(username, password, email):
     try:
+        print username, password, email
         customer = Customer(username=username, password=password, email=email)
         session.add(customer)
         session.commit()

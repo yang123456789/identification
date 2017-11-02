@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-27 22:01+0800\n"
-"PO-Revision-Date: 2017-09-27 22:01+0800\n"
+"POT-Creation-Date: 2017-11-02 22:34+0800\n"
+"PO-Revision-Date: 2017-11-02 22:34+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans\n"
 "Language-Team: zh_Hans <LL@li.org>\n"
@@ -17,4 +17,32 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.0\n"
+
+#: login.py:26
+msgid "register successfully"
+msgstr "注册成功"
+
+#: login.py:27
+msgid "register failed"
+msgstr "注册失败"
+
+#: login.py:34
+msgid "The username must be startswith latter 4-20 bit"
+msgstr ""
+
+#: login.py:36
+msgid "The password must be 8-20 character"
+msgstr "密码必须是8-20个字符"
+
+#: login.py:39
+msgid "The email format invalid"
+msgstr ""
+
+#: login.py:41
+msgid "The username or password or email does not None"
+msgstr ""
+
+#: login.py:70
+msgid "username or password invalid"
+msgstr ""
 
