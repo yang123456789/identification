@@ -18,31 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.0\n"
 
-#: login.py:26
 msgid "register successfully"
 msgstr "注册成功"
 
-#: login.py:27
 msgid "register failed"
 msgstr "注册失败"
 
-#: login.py:34
 msgid "The username must be startswith latter 4-20 bit"
-msgstr ""
+msgstr "用户名必须以字母开头4-20位"
 
-#: login.py:36
 msgid "The password must be 8-20 character"
 msgstr "密码必须是8-20个字符"
 
-#: login.py:39
 msgid "The email format invalid"
-msgstr ""
+msgstr "邮箱格式错误"
 
-#: login.py:41
 msgid "The username or password or email does not None"
-msgstr ""
+msgstr "用户名或密码或邮箱不能为空"
 
-#: login.py:70
 msgid "username or password invalid"
-msgstr ""
+msgstr "用户名或密码错误"
 

@@ -1,10 +1,9 @@
 import re
 from db.models import Customer, session
 from views import *
-app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans'
 from flask_babel import gettext as _
 from datetime import datetime, timedelta
-from security import decrypt_password, encrypt_password
+from security import decrypt_password, encrypt_password, generate_customer_id
 
 
 @app.route('/')
@@ -32,7 +31,7 @@ def validate(username, password, email):
     if username and password and email:
         if not re.match(r'^[a-zA-Z][a-zA-Z0-9]{3,19}$', username):
             return render_400(_('The username must be startswith latter 4-20 bit'))
-        elif not re.match(r'^{8,20}$', password):
+        elif len(password) < 8 or len(password) > 20:
             return render_400(_('The password must be 8-20 character'))
         elif not re.match(r'^[a-zA-Z0-9]+([._\\-\\+]*[a-zA-Z0-9])*@([a-zA-Z0-9]+'
                           r'[-a-zA-Z0-9]*[a-zA-Z0-9]+.){1,63}[a-zA-Z0-9]+$', email):
@@ -43,8 +42,8 @@ def validate(username, password, email):
 
 def _save(username, password, email):
     try:
-        print username, password, email
-        customer = Customer(username=username, password=password, email=email)
+        customer_id = generate_customer_id()
+        customer = Customer(customer_id=customer_id, username=username, password=password, email=email)
         session.add(customer)
         session.commit()
         session.close()

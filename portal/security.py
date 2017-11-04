@@ -3,6 +3,8 @@ from Crypto.PublicKey import RSA
 import base64
 from config import KEY
 from werkzeug.security import generate_password_hash, check_password_hash
+import hashlib
+import uuid
 
 
 def decrypt_password(secret_key):
@@ -23,3 +25,8 @@ def encrypt_password(username, password):
 def check_password(hash, password):
     status = check_password_hash(hash, password)
     return status
+
+
+def generate_customer_id():
+    customer_id = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    return customer_id

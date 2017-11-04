@@ -27,15 +27,16 @@ class Customer(Base):
         return None
 
 
-# class Identify(Base):
-#     id = Column(Integer, autoincrement=True, primary_key=True, index=True)
-#     birthday = Column(String(255))
-#     gender = Column(String(255))
-#     address = Column(String(255))
-#     identify = ForeignKey(Integer, Customer.id)
-#
-#     def __repr__(self):
-#         return '<Identify %s>' % self.birthday
+class Identify(Base):
+    __tablename__ = 'identify'
+    id = Column(Integer, autoincrement=True, primary_key=True, index=True)
+    birthday = Column(String(255))
+    gender = Column(String(255))
+    address = Column(String(255))
+    user_id = Column(Integer, ForeignKey('customer.id'))
+
+    def __repr__(self):
+        return '<Identify %s>' % self.birthday
 
 
 Base.metadata.create_all(engine)
