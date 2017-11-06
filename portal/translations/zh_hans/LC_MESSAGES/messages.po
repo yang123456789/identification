@@ -39,3 +39,5 @@ msgstr "用户名或密码或邮箱不能为空"
 msgid "username or password invalid"
 msgstr "用户名或密码错误"
 
+msgid "Not yet registered. Please register"
+msgstr "还未注册，请注册!"

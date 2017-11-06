@@ -1,7 +1,7 @@
-from flask import Flask, url_for, render_template, request, make_response, redirect
+from flask import Flask, url_for, render_template, request, make_response, redirect, g
 import json
-from portal import app
-app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans'
+from portal import app, logger
+from functools import wraps
 
 
 class Render(object):
@@ -42,3 +42,12 @@ def render_404(data=None):
 def render_500(data=None):
     message = render_json(500, data)
     return message
+
+
+def login_required(func):
+    @wraps(func)
+    def _wrapper(*args, **kwargs):
+        if g.user is None:
+            return redirect('/login')
+        return func(*args, **kwargs)
+    return _wrapper

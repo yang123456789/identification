@@ -13,21 +13,22 @@ def index():
 
 @app.route('/register', methods=['POST'])
 def register():
-    username = request.form.get('username', '').strip()
-    password = request.form.get('password', '').strip()
-    email = request.form.get('email', '').strip()
+    username = request.form.get('username')
+    password = request.form.get('password')
+    email = request.form.get('email')
     decipher_password = decrypt_password(password)
-    result = validate(username, decipher_password, email)
+    result = validate_register(username, decipher_password, email)
     if result is True:
+        username, email = username.strip(), email.strip()
         encipher_password = encrypt_password(username, decipher_password)
         status = _save(username, encipher_password, email)
         if status:
             return render_200(_('register successfully'))
-        return render_200(_('register failed'))
+        return render_400(_('register failed'))
     return result
 
 
-def validate(username, password, email):
+def validate_register(username, password, email):
     if username and password and email:
         if not re.match(r'^[a-zA-Z][a-zA-Z0-9]{3,19}$', username):
             return render_400(_('The username must be startswith latter 4-20 bit'))
@@ -49,22 +50,32 @@ def _save(username, password, email):
         session.close()
         return True
     except Exception, e:
+        logger.error(e)
         return False
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
-    customer = Customer(username=username, password=password)
-    if len(customer) == 1:
-        # redirect_to_index = redirect('/index')
-        # response = current_app.make_response(redirect_to_index )
-        # response.set_cookie('cookie_name',value='values')
-        # return response
-        resp = make_response(render_template('*.html'))
-        expires=datetime.today() + timedelta(days=30)
-        resp.set_cookie('identification', username, expires=expires)
-        return resp
-    return render_template('index.html', {'data': _('username or password invalid')})
+    validate = validate_login(username, password)
+    if validate is True:
+        username, password = username.strip(), password.strip()
+        customer = Customer(username=username, password=password)
+        if len(customer) == 1:
+            resp = make_response(render_template('*.html'))
+            if request.cookies.get('identify') is None:
+                expires = datetime.today() + timedelta(days=30)
+                resp.set_cookie('identify', username, expires=expires)
+                return resp
+            return render_200('')
+        return render_404(_('Not yet registered. Please register'))
+    return validate
 
+
+def validate_login(username, password):
+    if not username:
+        return render_404(_('The username does not None'))
+    elif not password:
+        return render_404(_('The password does not None'))
+    return True
