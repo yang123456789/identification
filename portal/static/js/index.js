@@ -45,8 +45,13 @@
             type: "POST",
             url: "/login",
             data: {'username': username, 'password': encrypt.encrypt(password)},
+            dataType: 'json',
             success: function(msg) {
-                console.log(msg)
+                if(msg['status'] == 200){
+                    $.cookie('IDENTIFY', msg['message'], {expires: 4*60*60*1000})
+                }else{
+                    layer.msg(msg['message'], {icon: 5}, {time: 500});
+                }
             }
         });
     });
