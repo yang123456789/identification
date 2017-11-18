@@ -1,9 +1,9 @@
 import re
-from db.models import Customer, session
+from db.models import Customer, db
 from views import *
 from flask_babel import gettext as _
-from datetime import datetime, timedelta
-from security import decrypt_password, encrypt_password, generate_customer_id
+from security import decrypt_password, encrypt_password, generate_customer_id, generate_cookie, check_password
+from portal import cache
 
 
 @app.route('/')
@@ -45,9 +45,9 @@ def _save(username, password, email):
     try:
         customer_id = generate_customer_id()
         customer = Customer(customer_id=customer_id, username=username, password=password, email=email)
-        session.add(customer)
-        session.commit()
-        session.close()
+        db.session.add(customer)
+        db.session.commit()
+        db.session.close()
         return True
     except Exception, e:
         logger.error(e)
@@ -60,16 +60,18 @@ def login():
     password = request.form.get('password')
     validate = validate_login(username, password)
     if validate is True:
-        username, password = username.strip(), password.strip()
-        customer = Customer(username=username, password=password)
+        username, password = username.strip(), decrypt_password(password)
+        customer = Customer.query.filter_by(username=username).all()
         if len(customer) == 1:
-            resp = make_response(render_template('*.html'))
-            if request.cookies.get('identify') is None:
-                expires = datetime.today() + timedelta(days=30)
-                resp.set_cookie('identify', username, expires=expires)
-                return resp
-            return render_200('')
-        return render_404(_('Not yet registered. Please register'))
+            pwhash = username+password
+            pwd = customer[0].password
+            if check_password(pwd, pwhash):
+                cookie = generate_cookie(username, password)
+                if add_cookie(cookie, {username: password}):
+                    return render_200(cookie)
+                return render_400(_('login failed'))
+            return render_400(_('The password invalid'))
+        return render_400(_('The username invalid'))
     return validate
 
 
@@ -79,3 +81,12 @@ def validate_login(username, password):
     elif not password:
         return render_404(_('The password does not None'))
     return True
+
+
+def add_cookie(key, value, timeout=4*60*60):
+    try:
+        cache.set(key, value, timeout=timeout)
+        return True
+    except Exception, e:
+        logger.error(e)
+        return False

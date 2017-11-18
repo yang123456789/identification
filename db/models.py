@@ -1,20 +1,19 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
-from sqlalchemy.orm import relationship, Session
 from config import mysql
+from portal import app
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://{user}:{password}@{host}:{port}/{db}'.format(**mysql)
+app.config['SQLALCHEMY_POOL_TIMEOUT'] = 5
+db = SQLAlchemy(app)
 
-engine = create_engine('mysql://{user}:{password}@{host}:{port}/{db}'.format(**mysql))
-Base = declarative_base()
 
-
-class Customer(Base):
+class Customer(db.Model):
     __tablename__ = 'customer'
-    id = Column(Integer, autoincrement=True, primary_key=True, index=True)
-    customer_id = Column(String(255), nullable=False, index=True)
-    username = Column(String(255), index=True, nullable=False)
-    password = Column(String(255), nullable=False)
-    email = Column(String(255), nullable=False)
-    customer = relationship('Identify', backref='customer', lazy='dynamic')
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True, index=True)
+    customer_id = db.Column(db.String(255), nullable=False, index=True)
+    username = db.Column(db.String(255), index=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    customer = db.relationship('Identify', backref='customer', lazy='dynamic')
 
     def __repr__(self):
         return '<Customer %s>' % self.username
@@ -27,17 +26,16 @@ class Customer(Base):
         return None
 
 
-class Identify(Base):
+class Identify(db.Model):
     __tablename__ = 'identify'
-    id = Column(Integer, autoincrement=True, primary_key=True, index=True)
-    birthday = Column(String(255))
-    gender = Column(String(255))
-    address = Column(String(255))
-    user_id = Column(Integer, ForeignKey('customer.id'))
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True, index=True)
+    birthday = db.Column(db.String(255))
+    gender = db.Column(db.String(255))
+    address = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
     def __repr__(self):
         return '<Identify %s>' % self.birthday
 
 
-Base.metadata.create_all(engine)
-session = Session(bind=engine)
+db.create_all()

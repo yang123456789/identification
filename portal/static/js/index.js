@@ -44,7 +44,7 @@
         $.ajax({
             type: "POST",
             url: "/login",
-            data: {'username': username, 'password': password},
+            data: {'username': username, 'password': encrypt.encrypt(password)},
             success: function(msg) {
                 console.log(msg)
             }

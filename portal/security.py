@@ -4,7 +4,8 @@ import base64
 from config import KEY
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
-import uuid
+import time, random
+import jwt
 
 
 def decrypt_password(secret_key):
@@ -28,5 +29,11 @@ def check_password(hash, password):
 
 
 def generate_customer_id():
-    customer_id = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    customer_id = hashlib.md5(str(time.time()+str(random.random))).hexdigest()
     return customer_id
+
+
+def generate_cookie(username, password, algorithm='HS256'):
+    payload = {'username': username, 'password': password}
+    token = jwt.encode(payload, 'secret', algorithm)
+    return token[:256]

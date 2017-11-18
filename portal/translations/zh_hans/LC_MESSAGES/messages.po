@@ -41,3 +41,9 @@ msgstr "用户名或密码错误"
 
 msgid "Not yet registered. Please register"
 msgstr "还未注册，请注册!"
+
+msgid "The username invalid"
+msgstr "用户名不正确"
+
+msgid "The password invalid"
+msgstr "密码不正确"
