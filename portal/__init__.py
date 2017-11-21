@@ -9,4 +9,4 @@ cache = Cache(app, config={'CACHE_TYPE': 'redis', 'CACHE_REDIS_HOST': '123.58.24
                            'CACHE_REDIS_PORT': 6379, 'CACHE_REDIS_DB': 1, 'CACHE_REDIS_PASSWORD': 'SYHXsqq@1233',
                            'CACHE_DEFAULT_TIMEOUT': 20})
 
-import portal.login
+from portal import login, identify

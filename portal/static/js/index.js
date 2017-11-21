@@ -48,7 +48,8 @@
             dataType: 'json',
             success: function(msg) {
                 if(msg['status'] == 200){
-                    $.cookie('IDENTIFY', msg['message'], {expires: 4*60*60*1000})
+                    $.cookie('IDENTIFY', msg['message'], {expires: 4*60*60*1000});
+                    window.location.href = '/query';
                 }else{
                     layer.msg(msg['message'], {icon: 5}, {time: 500});
                 }

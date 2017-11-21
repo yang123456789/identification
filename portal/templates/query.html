@@ -4,12 +4,25 @@
     <meta charset="UTF-8">
     <title>- 查询 -</title>
     {% include 'common.html' %}
+    <link rel="stylesheet" href="/static/css/query.css">
 </head>
 <body>
 <div class="containers">
     <div class="header">
         <p>居民身份证号码查询系统</p>
     </div>
+    <div class="content">
+        <label>身份证号码：</label>
+        <input type="text" name="ID" class="query" id="query">
+        <span>快速查询</span>
+    </div>
+    <div class="line"></div>
+    <div class="footer">
+        <p>身份证号大全为您提供身份证号大全、身份证号码查询、身份证、身份证号码和姓名、身份证号码和真实姓名大全、身份证号码、身份证查询、身份证查询系统、身份证大全、给我一个身份证号码、居民身份证号码。</p>
+        <p>居民身份证号码按照《公民身份证号码》国家标准编制，身份证号码由18位数字组成：前6位为行政区划分代码，第7位至14位为出生日期码，第15位至17位为顺序码，第18位为校验码。</p>
+        <p>老居民身份证号码为15位数字。2000年后，原来7、8位的年份数字改为全称，并在最后一位增加校验码。居民身份证号码一经编定不作改变，派出所会在户口资料中给你加上，你要换新身份证时就是18位身份证号码了。</p>
+    </div>
 </div>
 </body>
 </html>
+<script type="text/javascript" src="/static/js/query.js"></script>
