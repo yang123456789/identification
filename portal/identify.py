@@ -1,7 +1,9 @@
 from views import *
 import re
 from flask_babel import gettext as _
-from config import identify
+from config import identify, CARD
+import requests
+import requests.exceptions
 
 
 @app.route('/query')
@@ -12,10 +14,40 @@ def inquire():
 @app.route('/query/info', methods=['POST'])
 def query_card():
     card = request.form.get('card')
-    validate = validate_card(card.strip())
-    if validate is True:
-        pass
-    return validate
+    if card:
+        card = card.strip()
+        validate = validate_card(card)
+        if validate is True:
+            result = Identify(card).info_query()
+            return result
+        return validate
+    return render_404(_('The card does not None'))
+
+
+@app.route('/query/leak', methods=['POST'])
+def leak_card():
+    card = request.form.get('card')
+    if card:
+        card = card.strip()
+        validate = validate_card(card)
+        if validate is True:
+            result = Identify(card).leak_query()
+            return result
+        return validate
+    return render_404(_('The card does not None'))
+
+
+@app.route('/query/loss', methods=['POST'])
+def loss_card():
+    card = request.form.get('card')
+    if card:
+        card = card.strip()
+        validate = validate_card(card)
+        if validate is True:
+            result = Identify(card).loss_query()
+            return result
+        return validate
+    return render_404(_('The card does not None'))
 
 
 def validate_card(card):
@@ -80,3 +112,48 @@ def _validate_eighteen_card(card):
             return True
         return render_400(_('The card invalid'))
     return render_400(_('The card invalid'))
+
+
+class Identify(object):
+    AppKey = CARD['key']
+
+    def __init__(self, card):
+        self.card = card
+
+    def request(self, url, dtype='json'):
+        data = dict(
+            key=self.AppKey,
+            dtype=dtype,
+            cardno=self.card
+        )
+        try:
+            req = requests.get(url, params=data, timeout=10)
+            if req.status_code is 200:
+                content = req.json()
+                if content.get('resultcode') == '200':
+                    return render_200(content.get('result'))
+                return render_json(int(content.get('resultcode')), content.get('reason'))
+        except requests.exceptions.ConnectTimeout, e:
+            logger.error(e)
+            return list()
+        except requests.exceptions.ConnectionError, e:
+            logger.error(e)
+            return list()
+        except requests.exceptions.RequestException, e:
+            logger.error(e)
+            return list()
+
+    def info_query(self):
+        url = CARD['info_url']
+        result = self.request(url)
+        return result
+
+    def leak_query(self):
+        url = CARD['leak_url']
+        result = self.request(url)
+        return result
+
+    def loss_query(self):
+        url = CARD['loss_url']
+        result = self.request(url)
+        return result

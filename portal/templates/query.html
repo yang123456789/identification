@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>- 查询 -</title>
     {% include 'common.html' %}
+    <script type="text/javascript" src="/static/js/query.js"></script>
     <link rel="stylesheet" href="/static/css/query.css">
 </head>
 <body>
@@ -11,10 +12,29 @@
     <div class="header">
         <p>居民身份证号码查询系统</p>
     </div>
-    <div class="content">
-        <label>身份证号码：</label>
-        <input type="text" name="ID" class="query" id="query">
-        <span>快速查询</span>
+    <div class="contain">
+        <ul>
+            <li class="cards default">身份证信息查询</li>
+            <li class="default">身份证泄漏查询</li>
+            <li class="default">身份证挂失查询</li>
+        </ul>
+        <div class="tabContent">
+            <div class="content">
+                <label>身份证号码：</label>
+                <input type="text" name="info" class="query" id="query">
+                <span>快速查询</span>
+            </div>
+            <div class="content" style="display: none;">
+                <label>身份证号码：</label>
+                <input type="text" name="leak" class="query" id="leak">
+                <span>快速查询</span>
+            </div>
+            <div class="content" style="display: none;">
+                <label>身份证号码：</label>
+                <input type="text" name="loss" class="query" id="loss">
+                <span>快速查询</span>
+            </div>
+        </div>
     </div>
     <div class="line"></div>
     <div class="footer">
@@ -25,4 +45,3 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="/static/js/query.js"></script>

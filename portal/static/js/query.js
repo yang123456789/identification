@@ -1,4 +1,11 @@
 (function ($) {
+    // 导航切换
+    $(document).on('click', '.containers .contain ul li', function () {
+        $(this).addClass('cards').siblings().removeClass('cards');
+        $('.containers .tabContent .content').eq($(this).index()).show().siblings().hide();
+    });
+
+    // 信息查询
     $(document).on('click', '.containers .content #query span', function () {
         var card = $('.containers .content #query').val();
         if(validate(card)) {

@@ -10,6 +10,31 @@
     padding: 5px 10px;
 }
 
+.containers .contain ul .default {
+    background-color: #e8908e;
+    color: #fff;
+}
+
+.containers .contain ul .cards {
+    background-color: #ba8f38;
+    color: #fff;
+}
+
+.containers .contain ul li {
+    list-style: none;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    width: 33.33333333%;
+    text-align: center;
+    margin-bottom: 10px;
+    float: left;
+}
+
+.containers .contain ul li:hover {
+    cursor: pointer;
+}
+
 .containers .header p {
     text-align: center;
     color: blue;

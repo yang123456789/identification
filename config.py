@@ -41,3 +41,11 @@ SBFfqXvuRxi5DtSg0WlFAkBRCVtGYKKrtJ27t5hThg9ueX8H96Sw3L+qkj4yrSQk
 fXFhoDL6OMJbshY4jQwtQS6HrsmkzAlJyq7gmVSqeZEf
 -----END RSA PRIVATE KEY-----"""
 }
+
+# juhe
+CARD = {
+    'key': '3717556d5319562f74671847738e703e',
+    'info_url': 'http://apis.juhe.cn/idcard/index',
+    'leak_url': 'http://apis.juhe.cn/idcard/leak',
+    'loss_url': 'http://apis.juhe.cn/idcard/loss'
+}
