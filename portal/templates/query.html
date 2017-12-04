@@ -19,17 +19,17 @@
             <li class="default">身份证挂失查询</li>
         </ul>
         <div class="tabContent">
-            <div class="content">
+            <div class="content info">
                 <label>身份证号码：</label>
                 <input type="text" name="info" class="query" id="query">
                 <span>快速查询</span>
             </div>
-            <div class="content" style="display: none;">
+            <div class="content leak" style="display: none;">
                 <label>身份证号码：</label>
                 <input type="text" name="leak" class="query" id="leak">
                 <span>快速查询</span>
             </div>
-            <div class="content" style="display: none;">
+            <div class="content loss" style="display: none;">
                 <label>身份证号码：</label>
                 <input type="text" name="loss" class="query" id="loss">
                 <span>快速查询</span>
@@ -41,6 +41,50 @@
         <p>身份证号大全为您提供身份证号大全、身份证号码查询、身份证、身份证号码和姓名、身份证号码和真实姓名大全、身份证号码、身份证查询、身份证查询系统、身份证大全、给我一个身份证号码、居民身份证号码。</p>
         <p>居民身份证号码按照《公民身份证号码》国家标准编制，身份证号码由18位数字组成：前6位为行政区划分代码，第7位至14位为出生日期码，第15位至17位为顺序码，第18位为校验码。</p>
         <p>老居民身份证号码为15位数字。2000年后，原来7、8位的年份数字改为全称，并在最后一位增加校验码。居民身份证号码一经编定不作改变，派出所会在户口资料中给你加上，你要换新身份证时就是18位身份证号码了。</p>
+    </div>
+    <div class="show">
+        <div class="showInfo area">
+            <div class="place">
+                <label>户籍所在地：</label>
+                <span id="area"></span>
+            </div>
+            <div class="birth">
+                <label>出生年月：</label>
+                <span id="birth"></span>
+            </div>
+            <div class="gender">
+                <label>性别：</label>
+                <span id="gender"></span>
+            </div>
+        </div>
+        <div class="showInfo leakQuery">
+            <div class="cards">
+                <label>身份证号码：</label>
+                <span id="cardno"></span>
+            </div>
+            <div class="res">
+                <label>标示符：</label>
+                <span id="res"></span>
+            </div>
+            <div class="tips">
+                <label>结果说明：</label>
+                <span id="tips"></span>
+            </div>
+        </div>
+        <div class="showInfo lossQuery">
+            <div class="cards">
+                <label>身份证号码：</label>
+                <span id="card-ID"></span>
+            </div>
+            <div class="res">
+                <label>标示符：</label>
+                <span id="res-id"></span>
+            </div>
+            <div class="tips">
+                <label>结果说明：</label>
+                <span id="tips-id"></span>
+            </div>
+        </div>
     </div>
 </div>
 </body>

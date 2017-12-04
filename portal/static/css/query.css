@@ -73,3 +73,12 @@
     font-size: 14px;
     text-indent: 28px;
 }
+
+.containers .show {
+    margin-top: 20px;
+}
+
+.containers .show .showInfo {
+    display: none;
+    color: #14e1f3;
+}

@@ -130,18 +130,19 @@ class Identify(object):
             req = requests.get(url, params=data, timeout=10)
             if req.status_code is 200:
                 content = req.json()
+                logger.info(content)
                 if content.get('resultcode') == '200':
                     return render_200(content.get('result'))
                 return render_json(int(content.get('resultcode')), content.get('reason'))
         except requests.exceptions.ConnectTimeout, e:
             logger.error(e)
-            return list()
+            return render_200({})
         except requests.exceptions.ConnectionError, e:
             logger.error(e)
-            return list()
+            return render_200({})
         except requests.exceptions.RequestException, e:
             logger.error(e)
-            return list()
+            return render_200({})
 
     def info_query(self):
         url = CARD['info_url']
