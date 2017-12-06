@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>- 查询 -</title>
     {% include 'common.html' %}
+    <link rel="shortcut icon" href="/static/images/title.png" type="image/x-icon">
     <script type="text/javascript" src="/static/js/query.js"></script>
     <link rel="stylesheet" href="/static/css/query.css">
 </head>
@@ -23,16 +24,19 @@
                 <label>身份证号码：</label>
                 <input type="text" name="info" class="query" id="query">
                 <span>快速查询</span>
+                <a href="/logout">注销</a>
             </div>
             <div class="content leak" style="display: none;">
                 <label>身份证号码：</label>
                 <input type="text" name="leak" class="query" id="leak">
                 <span>快速查询</span>
+                <a href="/logout">注销</a>
             </div>
             <div class="content loss" style="display: none;">
                 <label>身份证号码：</label>
                 <input type="text" name="loss" class="query" id="loss">
                 <span>快速查询</span>
+                <a href="/logout">注销</a>
             </div>
         </div>
     </div>

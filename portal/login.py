@@ -1,9 +1,7 @@
 import re
-from db.models import Customer, db
 from views import *
 from flask_babel import gettext as _
 from security import decrypt_password, encrypt_password, generate_customer_id, generate_cookie, check_password
-from portal import cache
 
 
 @app.route('/')
@@ -90,3 +88,16 @@ def add_cookie(key, value, timeout=4*60*60):
     except Exception, e:
         logger.error(e)
         return False
+
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    cookie = get_cookie()
+    if cookie:
+        try:
+            cache.delete(cookie)
+            return redirect('/')
+        except Exception, e:
+            logger.error(e)
+            return redirect('/')
+    return redirect('/')

@@ -47,7 +47,7 @@
                         var con = msg['message'];
                         var cards = $('.containers .show .leakQuery .cards #cardno');
                         var res = $('.containers .show .leakQuery .res #res');
-                        var tips = $('.containers .show .leakQuery .cards #tips');
+                        var tips = $('.containers .show .leakQuery .tips #tips');
                         cards.html(con['cardno']);
                         res.html(con['res']);
                         tips.html(con['tips']);
@@ -75,7 +75,7 @@
                         var con = msg['message'];
                         var cards = $('.containers .show .lossQuery .cards #card-ID');
                         var res = $('.containers .show .lossQuery .res #res-id');
-                        var tips = $('.containers .show .lossQuery .cards #tips-id');
+                        var tips = $('.containers .show .lossQuery .tips #tips-id');
                         cards.html(con['cardno']);
                         res.html(con['res']);
                         tips.html(con['tips']);

@@ -3,6 +3,7 @@ from portal import app
 from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://{user}:{password}@{host}:{port}/{db}'.format(**mysql)
 app.config['SQLALCHEMY_POOL_TIMEOUT'] = 5
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 

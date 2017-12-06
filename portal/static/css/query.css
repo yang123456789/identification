@@ -64,7 +64,15 @@
     border-radius: 4px;
 }
 
-.containers .content span:hover {
+.containers .content a {
+    background-color: #428bca;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.containers .content span:hover,a:hover {
     cursor: pointer;
 }
 

@@ -7,11 +7,13 @@ import requests.exceptions
 
 
 @app.route('/query')
+@login_required
 def inquire():
     return render_template('query.html')
 
 
 @app.route('/query/info', methods=['POST'])
+@login_required
 def query_card():
     card = request.form.get('card')
     if card:
@@ -25,6 +27,7 @@ def query_card():
 
 
 @app.route('/query/leak', methods=['POST'])
+@login_required
 def leak_card():
     card = request.form.get('card')
     if card:
@@ -38,6 +41,7 @@ def leak_card():
 
 
 @app.route('/query/loss', methods=['POST'])
+@login_required
 def loss_card():
     card = request.form.get('card')
     if card:
@@ -158,3 +162,4 @@ class Identify(object):
         url = CARD['loss_url']
         result = self.request(url)
         return result
+
