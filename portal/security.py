@@ -23,13 +23,13 @@ def encrypt_password(username, password):
     return pwd_hash
 
 
-def check_password(hash, password):
-    status = check_password_hash(hash, password)
+def check_password(hashing, password):
+    status = check_password_hash(hashing, password)
     return status
 
 
 def generate_customer_id():
-    customer_id = hashlib.md5(str(time.time()+str(random.random))).hexdigest()
+    customer_id = hashlib.md5(str(time.time())+str(random.random())).hexdigest()
     return customer_id
 
 
