@@ -10,4 +10,4 @@ if __name__ == '__main__':
         '%(asctime)s [%(module)s:%(funcName)s] [%(levelname)s]- %(message)s')
     handler.setFormatter(logging_format)
     app.logger.addHandler(handler)
-    app.run(host='localhost', port=9530)
+    app.run(host='0.0.0.0', port=9530)

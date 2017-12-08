@@ -17,6 +17,15 @@ mysql = {
     'db': 'identify'
 }
 
+# redis
+REDIS = {
+    'host': '123.58.244.170',
+    'port': 6379,
+    'password': 'SYHXsqq@1233',
+    'db': 1,
+    'timeout': 20
+}
+
 # rsa
 KEY = {
     'public': """-----BEGIN PUBLIC KEY-----
