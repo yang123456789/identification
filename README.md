@@ -11,8 +11,7 @@ identification is a simple web project which query ID-card information for flask
     pip install flask-sqlalchemy 
     pip install pyjwt 
     pip install requests==2.18.1 
-    pip install pycrypto 
-    pip install flask-cache 
+    pip install flask-cache
     pip install flask-babel
 
 ## Start
